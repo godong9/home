@@ -1,0 +1,22 @@
+{
+  "name": "godong9-home",
+  "description": "godong9 home project",
+  "main": "",
+  "authors": [
+    "Donghyun Go <godong9@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/godong9/home",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/javascripts/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^2.2.1"
+  }
+}

@@ -25,6 +25,7 @@ build/Release
 
 # Dependency directory
 node_modules
+bower_components
 
 # Optional npm cache directory
 .npm
@@ -34,3 +35,4 @@ node_modules
 
 # idea files
 .idea
+
