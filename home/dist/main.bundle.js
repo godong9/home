@@ -59,7 +59,7 @@
 	  return {
 	    hello: function () {
 	      console.log($);
-	      console.log("TEST@@@44");
+	      console.log("TEST");
 	      console.log('Hello from firstScript');
 	    }
 	  }

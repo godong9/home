@@ -1,7 +1,10 @@
 //webpack.config.js
 module.exports = {
-  entry: './public/javascripts/main.js',
+  context: __dirname + '/public/javascripts',
+  entry: {
+    main: './main.js'
+  },
   output: {
-    filename: './dist/bundle.js'
+    filename: './dist/[name].bundle.js'
   }
 };
