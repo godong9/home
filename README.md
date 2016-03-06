@@ -5,3 +5,7 @@ My Home Page Project
 - gulp watch & node home/bin/www
 
     $ npm start
+
+- 디버그할 때
+
+    $ DEBUG=home:* npm start
