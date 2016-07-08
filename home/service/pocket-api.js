@@ -79,11 +79,18 @@ Pocket.prototype._getJSONBody = function(res) {
 
 Pocket.prototype.getPocketItems = function(req, finalCallback) {
   var self = this;
+  var params = {
+    access_token: req.query.access_token,
+    count: req.query.count || 10,
+    offset: req.query.offset || 0,
+    sort: req.query.sort || 'newest',
+    since: 1467956760
+  };
   logger.debug('[getPocketItems]accessToken:', req.query.access_token);
   var requestOptions = {
     url: self.options.get_items_path,
     headers: HEADERS,
-    body: self.makeGetItemsBody({count: 10})
+    body: self.makeGetItemsBody(params)
   };
   request.post(requestOptions, function (err, res) {
     var result;
@@ -100,18 +107,26 @@ Pocket.prototype.getPocketItems = function(req, finalCallback) {
  * 포켓 아이템 가져올 때 body 만들어주는 메서드
  *
  * @param {Object} params
+ * @param {String} params.access_token - 액세스 토큰
  * @param {Number} [params.count] - 가져올 개수
  * @param {Number} [params.offset] - 오프셋
  * @returns {String}
  */
 Pocket.prototype.makeGetItemsBody = function(params) {
-  var requestBody = 'consumer_key=' + CONSUMER_KEY + '&access_token=' + req.query.access_token;
+  var requestBody = 'consumer_key=' + CONSUMER_KEY + '&access_token=' + params.access_token;
   if (!_.isUndefined(params.count)) {
     requestBody += '&count=' + params.count;
   }
   if (!_.isUndefined(params.offset)) {
     requestBody += '&offset=' + params.offset;
   }
+  if (!_.isUndefined(params.sort)) {
+    requestBody += '&sort=' + params.sort;
+  }
+  if (!_.isUndefined(params.since)) {
+    requestBody += '&since=' + params.since;
+  }
+
   return requestBody;
 };
 
