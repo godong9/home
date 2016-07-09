@@ -67,6 +67,16 @@ describe('Pocket', function() {
     });
   });
 
+  describe('#makeOauthRedirectPath', function() {
+    //given
+    var pocket = new Pocket();
+    var requestToken = 'abc';
+    //when
+    var redirectPath = pocket.makeOauthRedirectPath(requestToken);
+    //then
+    expect(redirectPath).to.equal('https://getpocket.com/auth/authorize?request_token=abc&redirect_uri=http://localhost:3000/oauthCallback?request_token=abc');
+  });
+
   describe('#getAccessToken', function() {
     it('should get access token', function(done) {
       //given
@@ -93,6 +103,53 @@ describe('Pocket', function() {
       var pocketItems = pocket.getPocketItems();
       //then
       expect(pocketItems.length).to.equal(2);
+    });
+  });
+
+  describe('#_getJSONBody', function() {
+    it('should get json body.', function() {
+      //given
+      var pocket = new Pocket();
+      var res =  {
+        body: JSON.stringify({
+          "a": "A"
+        })
+      };
+      //when
+      var body = pocket._getJSONBody(res);
+      //then
+      expect(body).to.eql({ a: 'A' });
+    });
+
+    it('should get empty json body when invalid json.', function() {
+      //given
+      var pocket = new Pocket();
+      var res =  {
+        body: "ABC"
+      };
+      //when
+      var body = pocket._getJSONBody(res);
+      //then
+      expect(body).to.eql({});
+    });
+  });
+
+  describe('#_makeGetItemsBody', function() {
+    it('should get items body.', function() {
+      //given
+      var pocket = new Pocket();
+      var params = {
+        consumer_key: 'abc',
+        access_token: 'abc',
+        count: 10,
+        offset: 0,
+        sort: 'newest',
+        since: 1467956760
+      };
+      //when
+      var body = pocket._makeGetItemsBody(params);
+      //then
+      expect(body).to.equal('consumer_key=abc&access_token=abc&count=10&offset=0&sort=newest&since=1467956760');
     });
   });
 

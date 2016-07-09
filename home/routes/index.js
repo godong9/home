@@ -12,12 +12,10 @@ router.get('/', function(req, res, next) {
 /* GET auth */
 router.get('/oauth', function(req, res) {
   pocket.getRequestToken(function(err, result) {
-    var redirectUrl = pocket.options.authorize_path;
     if (err) {
       return res.redirect(404);
     }
-    redirectUrl += '?request_token=' + result.code + '&redirect_uri=' + pocket.makeOauthCallbackPath(result.code);
-    res.redirect(redirectUrl);
+    res.redirect(pocket.makeOauthRedirectPath(result.code));
   });
 });
 
