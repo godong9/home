@@ -9,8 +9,8 @@ var async = require('async');
 var logger =  require('log4js').getLogger('Pocket-Api');
 var QueryString = require('querystring');
 
-var CONSUMER_KEY = '56271-dd94d8d396a16d40e178f7ca';
-var REDIRECT_URI = 'myrsslist:authorizationFinished';
+var CONSUMER_KEY = '<CONSUMER_KEY>';
+var REDIRECT_URI = '<REDIRECT_URI>';
 var HEADERS = {
   'Content-type': 'application/x-www-form-urlencoded',
   'X-Accept': 'application/json'
